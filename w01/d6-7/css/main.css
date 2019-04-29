@@ -23,6 +23,20 @@
     grid-gap: 1vmin;
     background-color: black;
   }
+
+  #wrapper{
+      display: inline-flex;
+      align-items: center;
+    }
+  #p1hb{
+    align-content: flex-start;
+    margin: 0 15vmin;
+}
+
+#p2hb{
+    align-content: flex-end;
+    margin: 0 15vmin;
+  }
   
   section div {
       text-align: center;

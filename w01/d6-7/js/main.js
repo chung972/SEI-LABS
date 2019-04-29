@@ -11,6 +11,8 @@ var clickTracker = 0;
 
 /*----- cached element references -----*/
 const msgEl = document.getElementById('msg');
+const p1HeadBoard = document.getElementById('p1hb');
+const p2HeadBoard = document.getElementById('p2hb');
 
 /*----- event listeners -----*/
 document.getElementById("board").addEventListener('click', handleClick);
@@ -192,7 +194,8 @@ function handleClick(evt) {
             render();
             return;
         }
-        if (checkTie()){
+        // CHECK TIE IS BROKEN. FIX IT.
+        if (checkTie()) {
             winner = 'T';
             render();
             return;
@@ -225,10 +228,11 @@ function endGame() {
     winner = true;
 }
 
-function checkTie(){
+// CHECH TIE IS BROKEN. YOU. ARE. NOT. DONE.
+function checkTie() {
     let localBool = null;
     board.forEach(function (colArr, colIdx) {
-        if(colArr.includes(0)){
+        if (colArr.includes(0)) {
             localBool = false;
         } else {
             localBool = true;
@@ -256,16 +260,23 @@ function render() {
     });
 
 
+    // Display Player's turn by highlighting:
+    p1HeadBoard.textContent = `Player X's turn.`;
+    p2HeadBoard.textContent = `Player O's turn.`;
+    // refactor this later to dynamically reflect who's turn it is (also have it be able to draw from PLAYERS)
+    // so that if PLAYER 1 wants to use @'s instead of X's, it'll render properly
+    p1HeadBoard.style.color = (turn===1) ? 'red' : 'black';
+    p2HeadBoard.style.color = (turn===-1) ? 'red' : 'black';
+
     // Display message
     if (winner) {
         msgEl.textContent = `${PLAYERS[turn].toUpperCase()} WINS!!!`;
         if (winner === 'T') {
             msgEl.textContent = "It's a Tie!";
+            //  YOU'RE NOT FUCKING DONE. SOMETHING IS WRONG WITH TIE. FIX IT
         } else {
             console.log(`${PLAYERS[turn].toUpperCase()} wins!`);
         }
-    } else {
-        msgEl.textContent = `${PLAYERS[turn].toUpperCase()}'s Turn`;
     }
 }
 

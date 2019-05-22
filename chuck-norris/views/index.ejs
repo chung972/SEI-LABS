@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+
+    <form action="/jokes" method="GET">
+      <input type="submit" value="Get New Joke">
+    </form>
+    <hr>
+
+    <% if(joke) {%>
+      <h3><i>"<%=joke.value%>"</i></h3>
+    <% } else {%>
+      <h3>No joke requested.</h3>
+    <% }%>
+  </body>
+</html>
